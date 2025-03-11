@@ -10,6 +10,7 @@ export interface Feedback {
   grammarScore: number;
   overallScore: number;
   feedback: string;
+  suggestions?: string; // 添加建议字段
 }
 
 export interface UserAnswerProps {
