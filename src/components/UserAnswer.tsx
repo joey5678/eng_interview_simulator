@@ -1,5 +1,6 @@
 import React from 'react';
 import { UserAnswerProps } from '../types/index';
+import './UserAnswer.css';
 
 const UserAnswer: React.FC<UserAnswerProps> = ({
   userAnswer,
@@ -13,40 +14,32 @@ const UserAnswer: React.FC<UserAnswerProps> = ({
   onSubmit
 }) => (
   <div className="user-section">
-    <h2>你的回答：</h2>
+    <h2>你的回答</h2>
     <div className="answer-container">
       <div className="answer-box">
-        <h3>英文回答：</h3>
+        <h3>英文回答</h3>
         <p>{userAnswer || (isRecording ? "正在录音..." : "点击下方按钮开始回答")}</p>
       </div>
-      {translatedText && (
-        <div className="answer-box">
-          <h3>中文翻译：</h3>
-          <p>{translatedText}</p>
-        </div>
-      )}
+      <div className="answer-box">
+        <h3>中文翻译</h3>
+        <p style={{ whiteSpace: 'pre-line' }}>
+          {translatedText || "等待翻译..."}
+        </p>
+      </div>
     </div>
 
     <div className="controls">
       {isLoading ? (
-        <div className="loading">处理中...</div>
+        <div className="loading">处理中</div>
       ) : (
         <>
-          {!isRecording ? (
-            <button
-            className='record-button'
-            onClick={onStartRecording}
+          <button
+            className={`record-button ${isRecording ? 'recording' : ''}`}
+            onClick={isRecording ? onStopRecording : onStartRecording}
             disabled={isLoading}
-            >
-            {userAnswer.trim() ? '继续回答' : '开始回答'}
-            </button>
-          ) : (
-            <>
-              <button className="stop-button" onClick={onStopRecording}>
-                暂停回答
-              </button>
-            </>
-          )}
+          >
+            {isRecording ? '停止回答' : userAnswer.trim() ? '继续回答' : '开始回答'}
+          </button>
 
           <button 
             className="submit-button" 

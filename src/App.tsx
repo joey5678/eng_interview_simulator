@@ -3,7 +3,7 @@ import './App.css';
 import InterviewQuestion from './components/InterviewQuestion';
 import UserAnswer from './components/UserAnswer';
 import FeedbackSection from './components/FeedbackSection';
-import type { Feedback, ASRResponse, TranslationResponse } from './types/index';
+import type { Feedback} from './types/index';
 
 interface AudioChunk extends Blob {
   type: string;
@@ -223,7 +223,10 @@ const App: React.FC = () => {
       }
 
       const data = await response.json();
-      setTranslatedText(data.response);
+      // 修改这里：累加翻译结果而不是替换
+      setTranslatedText(prev => {
+        return prev ? `${prev}\n${data.response}` : data.response;
+      });
     } catch (error) {
       console.error('翻译失败:', error);
       alert('翻译失败，请确保翻译服务正常运行');
