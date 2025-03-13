@@ -1,0 +1,95 @@
+.speaking-practice {
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+.speaking-practice h1 {
+  text-align: center;
+  color: #2c3e50;
+  margin-bottom: 30px;
+}
+
+.question-form {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 30px;
+}
+
+.question-form input {
+  flex: 1;
+  padding: 12px;
+  border: 2px solid #e2e8f0;
+  border-radius: 8px;
+  font-size: 1rem;
+}
+
+.question-form button {
+  padding: 12px 24px;
+  background: #4299e1;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.practice-container {
+  background: white;
+  border-radius: 12px;
+  padding: 24px;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.08);
+}
+
+.question-display {
+  margin-bottom: 24px;
+  padding: 16px;
+  background: #f8f9fa;
+  border-radius: 8px;
+  border-left: 4px solid #4299e1;
+}
+
+.feedback-section {
+  margin-top: 30px;
+  padding: 20px;
+  background: #f8f9fa;
+  border-radius: 8px;
+}
+
+.highlights, .suggestions {
+  margin: 20px 0;
+}
+
+.highlights ul, .suggestions ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+.highlights li, .suggestions li {
+  margin: 10px 0;
+  padding: 10px;
+  background: white;
+  border-radius: 6px;
+  border-left: 3px solid #4299e1;
+}
+
+.overall-comment {
+  margin-top: 20px;
+  padding: 16px;
+  background: white;
+  border-radius: 8px;
+  border-left: 3px solid #48bb78;
+}
+
+.evaluate-button {
+  background: #48bb78;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 6px;
+  cursor: pointer;
+  margin-left: 10px;
+}
+
+.evaluate-button:hover {
+  background: #38a169;
+}
