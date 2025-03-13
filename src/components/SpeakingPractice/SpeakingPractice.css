@@ -1,95 +1,206 @@
 .speaking-practice {
-  max-width: 1000px;
+  max-width: 1200px;
   margin: 0 auto;
-  padding: 20px;
+  padding: 2rem;
 }
 
 .speaking-practice h1 {
-  text-align: center;
   color: #2c3e50;
-  margin-bottom: 30px;
+  margin-bottom: 2rem;
+  font-size: 2rem;
 }
 
 .question-form {
+  background: #f8f9fa;
+  padding: 1.5rem;
+  border-radius: 8px;
+  margin-bottom: 2rem;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.form-row {
   display: flex;
-  gap: 10px;
-  margin-bottom: 30px;
+  gap: 1rem;
+  align-items: center;
+}
+
+.language-select {
+  min-width: 140px;
+  padding: 0.75rem;
+  border: 1px solid #dee2e6;
+  border-radius: 6px;
+  font-size: 1rem;
+  background-color: white;
 }
 
 .question-form input {
   flex: 1;
-  padding: 12px;
-  border: 2px solid #e2e8f0;
-  border-radius: 8px;
+  padding: 0.75rem;
+  border: 1px solid #dee2e6;
+  border-radius: 6px;
   font-size: 1rem;
 }
 
 .question-form button {
-  padding: 12px 24px;
-  background: #4299e1;
+  padding: 0.75rem 1.5rem;
+  background-color: #3498db;
   color: white;
   border: none;
-  border-radius: 8px;
+  border-radius: 6px;
   cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.question-form button:hover {
+  background-color: #2980b9;
 }
 
 .practice-container {
   background: white;
-  border-radius: 12px;
-  padding: 24px;
-  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.08);
+  border-radius: 8px;
+  padding: 2rem;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
 }
 
 .question-display {
-  margin-bottom: 24px;
-  padding: 16px;
+  margin-bottom: 2rem;
+  padding: 1.5rem;
   background: #f8f9fa;
-  border-radius: 8px;
-  border-left: 4px solid #4299e1;
-}
-
-.feedback-section {
-  margin-top: 30px;
-  padding: 20px;
-  background: #f8f9fa;
-  border-radius: 8px;
-}
-
-.highlights, .suggestions {
-  margin: 20px 0;
-}
-
-.highlights ul, .suggestions ul {
-  list-style-type: none;
-  padding: 0;
-}
-
-.highlights li, .suggestions li {
-  margin: 10px 0;
-  padding: 10px;
-  background: white;
   border-radius: 6px;
-  border-left: 3px solid #4299e1;
 }
 
-.overall-comment {
-  margin-top: 20px;
-  padding: 16px;
-  background: white;
-  border-radius: 8px;
-  border-left: 3px solid #48bb78;
+.question-display h2 {
+  color: #2c3e50;
+  margin-bottom: 1rem;
+  font-size: 1.5rem;
+}
+
+.answer-section {
+  margin-bottom: 2rem;
+}
+
+.answer-box {
+  background: #f8f9fa;
+  padding: 1.5rem;
+  border-radius: 6px;
+  margin-bottom: 1rem;
+}
+
+.answer-box h3 {
+  color: #2c3e50;
+  margin-bottom: 0.5rem;
+  font-size: 1.2rem;
+}
+
+.controls {
+  display: flex;
+  gap: 1rem;
+  margin-bottom: 2rem;
+}
+
+.record-button {
+  padding: 0.75rem 1.5rem;
+  background-color: #2ecc71;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.record-button:hover {
+  background-color: #27ae60;
+}
+
+.record-button.recording {
+  background-color: #e74c3c;
+}
+
+.record-button.recording:hover {
+  background-color: #c0392b;
 }
 
 .evaluate-button {
-  background: #48bb78;
+  padding: 0.75rem 1.5rem;
+  background-color: #9b59b6;
   color: white;
   border: none;
-  padding: 10px 20px;
   border-radius: 6px;
   cursor: pointer;
-  margin-left: 10px;
+  transition: background-color 0.3s;
 }
 
 .evaluate-button:hover {
-  background: #38a169;
+  background-color: #8e44ad;
+}
+
+.clear-button {
+  padding: 0.75rem 1.5rem;
+  background-color: #e74c3c;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.clear-button:hover {
+  background-color: #c0392b;
+}
+
+.clear-button:disabled {
+  background-color: #95a5a6;
+  cursor: not-allowed;
+}
+
+.loading {
+  padding: 1rem;
+  text-align: center;
+  color: #666;
+}
+
+.feedback-section {
+  background: #f8f9fa;
+  padding: 1.5rem;
+  border-radius: 6px;
+  margin-top: 2rem;
+}
+
+.feedback-section h2 {
+  color: #2c3e50;
+  margin-bottom: 1.5rem;
+  font-size: 1.5rem;
+}
+
+.feedback-section h3 {
+  color: #2c3e50;
+  margin-bottom: 0.5rem;
+  font-size: 1.2rem;
+}
+
+.feedback-section ul {
+  list-style-type: none;
+  padding: 0;
+  margin: 0 0 1.5rem 0;
+}
+
+.feedback-section li {
+  padding: 0.5rem 0;
+  border-bottom: 1px solid #dee2e6;
+}
+
+.feedback-section li:last-child {
+  border-bottom: none;
+}
+
+.feedback-section .overall-comment {
+  background: white;
+  padding: 1rem;
+  border-radius: 4px;
+  margin-top: 1rem;
+}
+
+button:disabled {
+  background-color: #95a5a6;
+  cursor: not-allowed;
 }

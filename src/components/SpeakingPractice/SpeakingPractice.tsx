@@ -21,6 +21,7 @@ const SpeakingPractice: React.FC = () => {
   const [accumulatedText, setAccumulatedText] = useState<string>('');
   const [audioBlob, setAudioBlob] = useState<Blob | null>(null);
   const [isPaused, setIsPaused] = useState<boolean>(false);
+  const [selectedLanguage, setSelectedLanguage] = useState<'english' | 'chinese'>('english');
   
   // 移除未使用的状态
   const mediaRecorderRef = useRef<MediaRecorder | null>(null);
@@ -113,7 +114,7 @@ const SpeakingPractice: React.FC = () => {
       const formData = new FormData();
       formData.append('audio_file', audioBlob, 'recording.webm');
 
-      const response = await fetch('/asr?output=json', {
+      const response = await fetch(`/asr?output=json&language=${selectedLanguage === 'english' ? 'en' : 'zh'}`, {
         method: 'POST',
         body: formData,
         headers: { 
@@ -182,7 +183,9 @@ const SpeakingPractice: React.FC = () => {
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
           model: import.meta.env.VITE_OLLAMA_MODEL,
-          prompt: `Translate the following English text to Chinese: ${text}`,
+          prompt: selectedLanguage === 'english' 
+          ? `Translate the following English text to Chinese: ${text} and no other extra words output.`
+          : `Translate the following Chinese text to English: ${text} and no other extra words output.`,
           stream: false
         })
       });
@@ -202,6 +205,14 @@ const SpeakingPractice: React.FC = () => {
       setIsLoading(false);
     }
   };
+
+    // ... 添加清空回答的函数
+  const handleClearAnswer = () => {
+      setUserAnswer('');
+      setTranslatedText('');
+      setAccumulatedText('');
+      setFeedback(null);
+    };
 
   // 清理函数
   useEffect(() => {
@@ -276,14 +287,24 @@ const SpeakingPractice: React.FC = () => {
       <h1>口语训练</h1>
       
       <form onSubmit={handleQuestionSubmit} className="question-form">
-        <input
-          type="text"
-          value={question}
-          onChange={(e) => setQuestion(e.target.value)}
-          placeholder="输入你想练习的问题..."
-          required
-        />
-        <button type="submit">确认</button>
+        <div className="form-row">
+          <select
+            value={selectedLanguage}
+            onChange={(e) => setSelectedLanguage(e.target.value as 'english' | 'chinese')}
+            className="language-select"
+          >
+            <option value="english">英语练习</option>
+            <option value="chinese">中文练习</option>
+          </select>
+          <input
+            type="text"
+            value={question}
+            onChange={(e) => setQuestion(e.target.value)}
+            placeholder={selectedLanguage === 'english' ? "输入英文练习问题..." : "输入中文练习问题..."}
+            required
+          />
+          <button type="submit">确认</button>
+        </div>
       </form>
 
       {question && (
@@ -296,12 +317,12 @@ const SpeakingPractice: React.FC = () => {
           <div className="answer-section">
             <h2>你的回答：</h2>
             <div className="answer-box">
-              <h3>英文回答：</h3>
+              <h3>{selectedLanguage === 'english' ? '英文回答：' : '中文回答：'}</h3>
               <p>{userAnswer || "点击下方按钮开始回答"}</p>
             </div>
             {translatedText && (
               <div className="answer-box">
-                <h3>中文翻译：</h3>
+                <h3>{selectedLanguage === 'english' ? '中文翻译：' : '英文翻译：'}</h3>
                 <p>{translatedText}</p>
               </div>
             )}
@@ -320,13 +341,22 @@ const SpeakingPractice: React.FC = () => {
                   {isRecording ? '停止录音' : '开始回答'}
                 </button>
                 {userAnswer && (
-                  <button
-                    className="evaluate-button"
-                    onClick={getFeedback}
-                    disabled={isLoading}
-                  >
-                    获取反馈
-                  </button>
+                  <>
+                    <button
+                      className="evaluate-button"
+                      onClick={getFeedback}
+                      disabled={isLoading}
+                    >
+                      获取反馈
+                    </button>
+                    <button
+                      className="clear-button"
+                      onClick={handleClearAnswer}
+                      disabled={isLoading}
+                    >
+                      清空回答
+                    </button>
+                  </>
                 )}
               </>
             )}
